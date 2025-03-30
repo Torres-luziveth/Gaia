@@ -1,0 +1,67 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Light ;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 55px;
+
+}
+.container_Main{
+    width: 80vw;
+    height: 8vh;
+    background: #D6D6D6B2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 60px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.container_Main img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.container_Main img:hover {
+    width: 50px;
+    height: 40px;
+    background-color: #f4b74a;
+    padding: 3px; 
+    border-radius: 30%;
+}
+
+.container_Retos{
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 90px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; 
+}
+
+.box {
+    background: white;
+    border: 2px solid black;
+    border-radius: 30px; 
+    padding: 15px 20px;
+    font-size: 18px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}

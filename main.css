@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Light ;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+    gap: 55px;
+
+}
+.container_Main{
+    width: 80vw;
+    height: 8vh;
+    background: #D6D6D6B2;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 60px;
+    padding: 10px;
+    margin: 10px;
+
+}
+
+.container_Main img{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.container_Main img:hover {
+    width: 50px;
+    height: 40px;
+    background-color: #f4b74a;
+    padding: 3px; 
+    border-radius: 30%;
+}
+
+.container_Planet_Text{
+    display: flex;
+    flex-direction: row;
+    gap: 180px;
+    align-self: center;
+}
+
+.container_Text{
+    display: flex;
+    align-self: flex-start;
+    flex-direction: column;
+    margin-top: 70px;
+    gap: 30px;
+}
+p{
+    font-size: 100px;
+    padding-left: 10px;
+}
+p2{
+    font-size: 20px;
+}
+
+.container_Img_Planet img{
+width: 530px;
+height: 530px;
+}
