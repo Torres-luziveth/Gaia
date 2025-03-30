@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaia</title>
+    <link rel="stylesheet" href="../static/css/login.css">
+    <script src="../js/app.js"></script> <!-- Se carga el archivo JS -->
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="container_Login">
+            <div class="One">
+                <h3>GAIA</h3>
+                <a href="/registro" class="signup">Sign up</a>
+            </div>
+
+            <div class="Two">
+
+                <h2>Log in</h2>
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="error-message">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>  
+                    {% endif %}
+                {% endwith %}
+
+                <form class="login-form" action="/login" method="POST">
+
+                    <div class="container_inputs">
+
+                        <input type="email" name="email" id="email" placeholder="E-mail address" class="input_field">
+
+                        <input type="password" name="password" id="password" placeholder="Password" class="input_field">
+
+                        <p class="forgot_password"><a href="/recuperar_contrasena">I forgot my password</a>
+
+                    </div>
+
+                    <div class="slider-container" onclick="toggleSlider()">
+                        <div class="slider-btn" id="sliderBtn">
+                            <button type="submit">
+                                <img src="../static/img/btn_Flecha.svg" alt="btn">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+

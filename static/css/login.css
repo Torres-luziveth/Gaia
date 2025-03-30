@@ -7,45 +7,42 @@
 
 .container{
     width: 100vw;
-    height: 100vh;
-    background-image: url(./img/fondo\ 1.png);
+    height: 114vh;
+    background-image: url(../img/fondo1.png);
     background-repeat: no-repeat;
     background-position: center 44vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 20px;
+
 
 }
 
 
 .container_Login{
-    width: 36vw;
-    height: 69vh;
+    width: 33vw;
+    height: 80vh;
     background: #D6D6D6B2;
-    top: 140px;
-    left: 405px;
     border-radius: 30px;
     display: flex;
+    padding: 40px 30px; /* Espaciado interno */
     align-items: center;
     flex-direction: column;
-    gap: 57px;
-
+    overflow: hidden;
 }
 
 .One{
     display: flex;
-    align-items: stretch;
-    flex-direction: row;
-    gap: 300px;
+    justify-content: space-between; 
+    width: 100%;
+    margin-bottom: 60px;
 }
 
 .One h3{
     font-size: 24px;
     color: #777;
     align-self: flex-start;
-    padding: 30px;
 
 }
 
@@ -54,46 +51,53 @@
     color: black;
     text-decoration: none;
     font-weight: bold;
-    align-self: flex-end;
-    padding: 30px;
-
-
 }
 
 .Two{
     display: flex;
-    align-items: stretch;
     flex-direction: column;
     gap: 40px;
+    width: 100%; /* Ocupar todo el ancho */
 }
 
 .container_inputs {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 15px;
 }
 
 .input_field {
-    width: 475px;
+    width: 100%; /* Ajustar al contenedor */
     height: 50px;
-    background: #f5f4f4e1;
+    background: rgba(245, 244, 244, 0.9);
     border-radius: 50px;
     border: none;
-    padding-left: 10px;
+    padding-left: 15px;
     font-size: 16px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
 }
-p{
+
+.forgot_password {
+    font-size: 13px;
     background: white;
     border-radius: 50px;
     padding: 4px;
     align-self: flex-end;
-    margin-right: 40px;
     position: relative;
-    bottom: 20px;
-
+    bottom: 15px;
+    color: black; /* Esto aplica solo al texto dentro del <p>, pero no al enlace */
 }
 
+.forgot_password a {
+    color: black; /* Ahora el enlace será negro */
+    text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+
+/* Botón slider */
 .slider-container {
     width: 100px;
     height: 40px;
@@ -101,10 +105,10 @@ p{
     border-radius: 20px;
     display: flex;
     align-items: center;
-    align-self: center;
+    justify-content: center;
     position: relative;
-    padding: 5px;
     cursor: pointer;
+    margin: 0 auto;
 }
 
 .slider-btn {
@@ -119,15 +123,43 @@ p{
     position: absolute;
     left: 5px;
     transition: left 0.3s ease-in-out;
+    border: none;
 }
 
 .slider-btn.active {
     left: 55px;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-    display: none;
-    margin-left: 10px;
+.slider-btn button {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
+
+.slider-btn img {
+    width: 100%;
+    height: 100%;
+} 
+
+.error-message {
+    color: #ff4d4d;
+    font-size: 12px;
+    text-align: center;
+    border: 1px solid #ff4d4d;
+    background-color: rgba(255, 77, 77, 0.1);
+    padding: 2px;
+    border-radius: 5px;
+    position: absolute; /* Hace que el mensaje de error no empuje otros elementos */
+    left: 50.5%;
+    top: 47%;
+    transform: translateX(-50%);
+    width: 28.5%; /* Ajusta el ancho */
+}
+
+
+
