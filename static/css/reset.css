@@ -1,7 +1,7 @@
 /* Estilos específicos para restablecer_contrasena.html */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -13,7 +13,7 @@ body {
 .container {
     width: 100%;
     max-width: 400px;
-    background: #fff;
+    background: #D6D6D6B2;
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -131,15 +131,17 @@ p a:hover {
 
 .form-group input {
     width: 100%;
-    padding: 14px 14px 14px 45px; /* Espacio para el ícono de la izquierda */
-    border: 2px solid rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #000;
+    padding: 14px 14px 14px 45px; /* Espacio para el ícono */
+    border: none;
+    border-radius: 50px;
+    background: rgba(245, 244, 244, 0.9);
+    color: #000; /* Texto negro */
     outline: none;
     font-size: 16px;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .form-group input:focus {

@@ -5,6 +5,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from itsdangerous import URLSafeTimedSerializer as Serializer
 
+
 app = Flask(__name__)
 app.secret_key = ''
 
@@ -17,11 +18,13 @@ serializer = Serializer(app.secret_key, salt='password-reset-salt')
 def get_db_connection():
     try:
         conn = psycopg2.connect(
-            host='',
+            host='',  # O la IP del servidor PostgreSQL
             user='',
             password='',
             database='',
-            port=''
+            port='',  # Puerto por defecto de PostgreSQL
+            client_encoding=''  # Asegura que se use UTF-8
+            
         )
         return conn
     except Exception as ex:
@@ -29,12 +32,12 @@ def get_db_connection():
         return None
 
 # Función para enviar correos
-def enviar_email(destinatario, asunto, cuerpo):
+def enviar_email(destinatario, asunto, cuerpo_html):
     mensaje = Mail(
         from_email='gaia.aplication@gmail.com',  # Cambia esto por tu correo en SendGrid
         to_emails=destinatario,
         subject=asunto,
-        html_content=cuerpo
+        html_content=cuerpo_html
     )
     try:
         sg = SendGridAPIClient(SENDGRID_API_KEY)
@@ -42,8 +45,6 @@ def enviar_email(destinatario, asunto, cuerpo):
         print(f"Correo enviado con éxito! Status code: {response.status_code}")
     except Exception as e:
         print(f"Error al enviar el correo: {e}")
-
-
 
 
 @app.route('/registro', methods=['GET', 'POST'])
@@ -69,6 +70,7 @@ def registro():
 
         # Verificar si el correo ya está registrado
         cursor.execute("SELECT * FROM usuarios WHERE correo = %s", (email,))
+        conn.commit()
         if cursor.fetchone():
             flash("El correo electrónico ya está registrado.")
             cursor.close()
@@ -141,17 +143,29 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/main')
+@app.route('/templates/User.html')
+def User():
+    return render_template('User.html')
+
+@app.route('/templates/main.html')
 def main():
     return render_template('main.html')
 
-@app.route('/notas')
+@app.route('/templates/notas.html')
 def notas():
     return render_template('notas.html')
 
-@app.route('/retos')
+@app.route('/templates/retos.html')
 def retos():
     return render_template('retos.html')
+
+@app.route('/templates/searcher.html')
+def searcher():
+    return render_template('searcher.html')
+
+@app.route('/templates/setting.html')
+def setting():
+    return render_template('setting.html')
 
 @app.route('/recuperar_contrasena', methods=['GET', 'POST'])
 def recuperar_contrasena():
@@ -171,19 +185,18 @@ def recuperar_contrasena():
             token = serializer.dumps(email, salt='password-reset-salt')
             enlace = url_for('restablecer_contrasena', token=token, _external=True)
             asunto = "Recuperación de contraseña"
-            cuerpo = f"""
-            <p>Hola, hemos recibido una solicitud para restablecer tu contraseña.</p>
-            <p>Si no has solicitado este cambio, ignora este mensaje.</p>
-            <p>Para restablecer tu contraseña, haz clic en el siguiente enlace:</p>
-            <a href="{enlace}">Restablecer contraseña</a>
-            """
-            enviar_email(email, asunto, cuerpo)
-            flash("Te hemos enviado un correo para recuperar tu contraseña.")
+
+            # Renderizar el HTML con Flask
+            cuerpo_html = render_template('email.html', enlace=enlace)
+
+            enviar_email(email, asunto, cuerpo_html)
+            flash("Te hemos enviado un correo para recuperar tu contraseña.", "success")
         else:
-            flash("El correo electrónico no está registrado.")
+            flash("El correo electrónico no está registrado.", "error")
 
         cursor.close()
         conn.close()
+        return redirect(url_for('recuperar_contrasena'))
 
     return render_template('recover.html')
 
@@ -218,3 +231,5 @@ def restablecer_contrasena(token):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+

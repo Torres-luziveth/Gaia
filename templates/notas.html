@@ -3,21 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notas</title>
+    <title>Calendario</title>
     <link rel="stylesheet" href="../static/css/notas.css">
 </head>
 <body>
-    
     <div class="container">
         <div class="container_Main">
-            <img src="../img/user.svg" alt="user">
-            <img src="../img/house.svg" alt="house">
-            <img src="../img/notes.svg" alt="notes">
-            <img src="../img/numbers.svg" alt="numbers" data-url="retos.html">
-            <img src="../img/magnifying glass.svg" alt="magnifying glass">
-            <img src="../img/settings.svg" alt="settings">
+            <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user"></a>
+            <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house"></a>
+            <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes"></a>
+            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"> </a>
+            <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher"></a>
+            <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings"></a>
+        </div>
+        
+        <div class="calendar-container">
+            <h1>Calendario 2025</h1>
+            <select id="month-selector">
+                <option value="0">Enero</option>
+                <option value="1">Febrero</option>
+                <option value="2" selected>Marzo</option>
+                <option value="3">Abril</option>
+                <option value="4">Mayo</option>
+                <option value="5">Junio</option>
+                <option value="6">Julio</option>
+                <option value="7">Agosto</option>
+                <option value="8">Septiembre</option>
+                <option value="9">Octubre</option>
+                <option value="10">Noviembre</option>
+                <option value="11">Diciembre</option>
+            </select>
+            <div class="calendar" id="calendar">
+                <div class="day header">Lun</div>
+                <div class="day header">Mar</div>
+                <div class="day header">Mié</div>
+                <div class="day header">Jue</div>
+                <div class="day header">Vie</div>
+                <div class="day header">Sáb</div>
+                <div class="day header">Dom</div>
+            </div>
         </div>
     </div>
-    
+
+    <script src="../static/js/script.js"></script>
 </body>
 </html>

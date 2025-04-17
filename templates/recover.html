@@ -10,20 +10,41 @@
 <body>
     <div class="container">
         <h1>Recuperar Contraseña</h1>
-        {% with messages = get_flashed_messages(category_filter=['success', 'error']) %}
+
+        
+        {% with messages = get_flashed_messages(category_filter=['error']) %}
             {% if messages %}
-                <div class="flash-message">
-                    {{ messages[0] }}
-                </div>
+                <div class="error-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>  
             {% endif %}
         {% endwith %}
+
+        {% with messages = get_flashed_messages(category_filter=['success']) %}
+            {% if messages %}
+                <div class="flash-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>  
+            {% endif %}
+        {% endwith %}
+
         <form action="/recuperar_contrasena" method="POST">
             <label for="email">Ingresa tu correo electrónico:</label>
             <div class="form-group">
                 <i class="fas fa-envelope icon"></i>
                 <input type="email" name="email" id="email" placeholder="Correo electrónico" required>
             </div>
-            <button type="submit">Enviar</button>
+            <div class="slider-container" onclick="toggleSlider()">
+                <div class="slider-btn" id="sliderBtn">
+                    <button type="submit">
+                        <img src="../static/img/btn_Flecha.svg" alt="btn">
+                    </button>
+                </div>
+            </div>
         </form>
     </div>    
 </body>

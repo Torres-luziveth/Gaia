@@ -1,21 +1,20 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Light ;
+    font-family: Light;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 20px;
-    gap: 55px;
-
+    gap: 20px;
 }
-.container_Main{
+
+.container_Main {
     width: 80vw;
     height: 8vh;
     background: #D6D6D6B2;
@@ -27,10 +26,9 @@
     gap: 60px;
     padding: 10px;
     margin: 10px;
-
 }
 
-.container_Main img{
+.container_Main img {
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -40,6 +38,98 @@
     width: 50px;
     height: 40px;
     background-color: #f4b74a;
-    padding: 3px; 
+    padding: 3px;
     border-radius: 30%;
+}
+
+.calendar-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 10px; /* Reducido para que el selector de meses no quede tan separado */
+    font-size: 24px;
+}
+
+#month-selector {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+#month-selector:focus {
+    outline: none;
+    border-color: #f4b74a;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    gap: 10px;
+}
+
+.day {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.day.header {
+    background-color: #f4b74a;
+    color: white;
+    font-weight: bold;
+    cursor: default;
+}
+
+.day.empty {
+    background-color: #f5f5f5;
+    cursor: default;
+}
+
+.day:not(.header):not(.empty) {
+    background-color: #e8ecef;
+}
+
+.day:not(.header):not(.empty):hover {
+    background-color: #d1d5db;
+}
+
+.day.marked-x {
+    position: relative;
+    color: white;
+}
+
+.day.marked-x::before {
+    content: '✖';
+    position: absolute;
+    font-size: 30px;
+    color: rgb(255, 0, 0);
+}
+
+.day.marked-check {
+    position: relative;
+    color: white;
+}
+
+.day.marked-check::before {
+    content: '✔';
+    position: absolute;
+    font-size: 30px;
+    color: rgb(38, 255, 0);
 }

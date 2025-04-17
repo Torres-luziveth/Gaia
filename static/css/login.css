@@ -22,7 +22,9 @@
 
 .container_Login{
     width: 33vw;
-    height: 80vh;
+    max-width: 450px;
+    min-width: 320px;
+    height: auto;
     background: #D6D6D6B2;
     border-radius: 30px;
     display: flex;
@@ -30,20 +32,19 @@
     align-items: center;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .One{
     display: flex;
     justify-content: space-between; 
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .One h3{
     font-size: 24px;
     color: #777;
-    align-self: flex-start;
-
 }
 
 .signup {
@@ -56,7 +57,7 @@
 .Two{
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     width: 100%; /* Ocupar todo el ancho */
 }
 
@@ -78,7 +79,9 @@
     padding-left: 15px;
     font-size: 16px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
+
 
 .forgot_password {
     font-size: 13px;
@@ -89,11 +92,20 @@
     position: relative;
     bottom: 15px;
     color: black; /* Esto aplica solo al texto dentro del <p>, pero no al enlace */
+    transition: all 0.3s ease;
 }
 
 .forgot_password a {
     color: black; /* Ahora el enlace será negro */
     text-decoration: none; /* Opcional: elimina el subrayado */
+}
+
+.Eyes {
+    position: absolute;
+    right: 565px;
+    bottom: 238px;
+    border: none;
+
 }
 
 
@@ -147,19 +159,12 @@
 } 
 
 .error-message {
-    color: #ff4d4d;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid #ff4d4d;
     background-color: rgba(255, 77, 77, 0.1);
-    padding: 2px;
+    color: #ff4d4d;; /* Texto verde suave */
+    border: 1px solid #ff4d4d;
+    padding: 10px;
     border-radius: 5px;
-    position: absolute; /* Hace que el mensaje de error no empuje otros elementos */
-    left: 50.5%;
-    top: 47%;
-    transform: translateX(-50%);
-    width: 28.5%; /* Ajusta el ancho */
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 0.95rem;
 }
-
-
-

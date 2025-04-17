@@ -1,6 +1,6 @@
 /* Global Styles */
 body {
-    background-color: lightgray; /* Fondo cambiado a lightgray */
+    background-color: rgb(255, 255, 255); /* Fondo cambiado a lightgray */
     color: #000; /* Texto negro para mayor contraste */
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -14,7 +14,7 @@ body {
 
 /* Recuperar Contraseña Container */
 .container {
-    background: #fff; /* Fondo del contenedor cambiado a blanco */
+    background: #D6D6D6B2; /* Fondo del contenedor cambiado a blanco */
     padding: 30px 40px;
     border-radius: 15px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Sombras más suaves */
@@ -36,6 +36,7 @@ h1 {
 
 /* Form Fields */
 .form-group {
+    
     position: relative;
     margin-bottom: 20px;
     width: 100%;
@@ -53,14 +54,16 @@ h1 {
 .form-group input {
     width: 100%;
     padding: 14px 14px 14px 45px; /* Espacio para el ícono */
-    border: 2px solid rgba(0, 0, 0, 0.3); /* Contorno tenue */
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.05); /* Fondo claro */
+    border: none;
+    border-radius: 50px;
+    background: rgba(245, 244, 244, 0.9);
     color: #000; /* Texto negro */
     outline: none;
     font-size: 16px;
     transition: all 0.3s ease;
     box-sizing: border-box;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+
 }
 
 .form-group input:focus {
@@ -73,31 +76,54 @@ h1 {
 }
 
 /* Buttons */
-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(45deg, #D3D3D3, #BEBEBE); /* Botón degradado claro */
-    color: #000; /* Texto negro */
-    font-size: 18px;
-    font-weight: bold;
-    text-transform: uppercase;
+.slider-container {
+    width: 100px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
     cursor: pointer;
-    transition: all 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más tenue */
+    margin: 0 auto;
 }
 
-button:hover {
-    background: linear-gradient(45deg, #BEBEBE, #D3D3D3);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    transform: translateY(-3px);
+.slider-btn {
+    width: 35px;
+    height: 35px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    left: 5px;
+    transition: left 0.3s ease-in-out;
+    border: none;
 }
 
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+.slider-btn.active {
+    left: 55px;
 }
+
+.slider-btn button {
+    background: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.slider-btn img {
+    width: 100%;
+    height: 100%;
+} 
+
 
 /* Mensajes de éxito o error (común para ambos) */
 .flash-message {
@@ -111,8 +137,13 @@ button:active {
     font-size: 0.95rem;
 }
 
-.flash-message.success, .flash-message.error {
-    background-color: #e9f7ef;
-    color: #4CAF50;
-    border: 1px solid #c3e6cb;
+.error-message {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;; /* Texto verde suave */
+    border: 1px solid #ff4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 0.95rem;
 }

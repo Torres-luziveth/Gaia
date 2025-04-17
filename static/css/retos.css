@@ -65,3 +65,29 @@
     text-align: center;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: black;
+    width: 90%;
+}  
+
+.add-container {
+    width: 13vw;
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+    border-color: #f1b24a;
+    padding: 10px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    justify-content: flex-start;
+    gap: 15px;
+}  
+
+.add-container img{
+    width: 35px;
+    height: 35px;
+}

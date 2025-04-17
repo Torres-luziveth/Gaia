@@ -1,3 +1,4 @@
+/* Estilos globales */
 * {
     margin: 0;
     padding: 0;
@@ -19,25 +20,24 @@
 
 .container_signUp {
     width: 30vw;
-    height: 80vh;
+    max-width: 450px;
+    min-width: 320px;
+    height: auto;
     background: rgba(214, 214, 214, 0.7);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    padding: 40px 30px; /* Espaciado interno */
-    position: relative;
-
+    padding: 40px 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-
-/* Asegurar que los elementos internos se ajusten al contenedor */
 .One {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
 }
 
 .One h3 {
@@ -52,17 +52,13 @@
     font-weight: bold;
 }
 
-
-/* Contenedor principal del formulario */
 .Two {
     display: flex;
     flex-direction: column;
-    gap: 40px;
-    width: 100%; /* Ocupar todo el ancho */
-
+    gap: 30px;
+    width: 100%;
 }
 
-/* Contenedor de los inputs */
 .container_inputs {
     display: flex;
     flex-direction: column;
@@ -72,9 +68,8 @@
     margin-bottom: 15px;
 }
 
-/* Inputs */
 .input_field {
-    width: 100%; /* Ajustar al contenedor */
+    width: 100%;
     height: 50px;
     background: rgba(245, 244, 244, 0.9);
     border-radius: 50px;
@@ -82,11 +77,35 @@
     padding-left: 15px;
     font-size: 16px;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 
 
-/* Botón slider */
+/* Mensajes de error y éxito */
+.flash-message, .error-message {
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 0.95rem;
+    width: 90%;
+    max-width: 400px;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    background-color: rgba(255, 77, 77, 0.1);
+    color: #ff4d4d;; /* Texto verde suave */
+    border: 1px solid #ff4d4d;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: 0.95rem;
+    width: 100%
+}
+
+/* Slider */
 .slider-container {
     width: 100px;
     height: 40px;
@@ -133,20 +152,4 @@
 .slider-btn img {
     width: 100%;
     height: 100%;
-} 
-
-.error-message {
-    color: #ff4d4d;
-    font-size: 12px;
-    text-align: center;
-    border: 1px solid #ff4d4d;
-    background-color: rgba(255, 77, 77, 0.1);
-    padding: 2px;
-    border-radius: 5px;
-    position: absolute; /* Hace que el mensaje de error no empuje otros elementos */
-    left: 50%;
-    top: 35%;
-    transform: translateX(-50%);
-    width: 80%; /* Ajusta el ancho */
 }
-
