@@ -100,14 +100,31 @@
     text-decoration: none; /* Opcional: elimina el subrayado */
 }
 
-.Eyes {
+.input-container {
+    position: relative;
+    width: 100%; /* o el ancho que desees */
+  }
+  
+  .input_field {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* deja espacio para el ícono */
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .Eyes {
     position: absolute;
-    right: 565px;
-    bottom: 238px;
+    right: 10px;
+    top: 22%;
+  }
+  
+  .Eyes button {
+    background: none;
     border: none;
-
-}
-
+    cursor: pointer;
+    font-size: 18px;
+  }
 
 /* Botón slider */
 .slider-container {

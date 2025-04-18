@@ -105,6 +105,33 @@
     width: 100%
 }
 
+.input-container {
+    position: relative;
+    width: 100%; /* o el ancho que desees */
+  }
+  
+  .input_field {
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px; /* deja espacio para el ícono */
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  
+  .Eyes {
+    position: absolute;
+    right: 10px;
+    top: 22%;
+  }
+  
+  .Eyes button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  
+
 /* Slider */
 .slider-container {
     width: 100px;

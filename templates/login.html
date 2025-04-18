@@ -8,7 +8,6 @@
     <title>Gaia</title>
     <link rel="stylesheet" href="../static/css/login.css">
     <script src="../static/js/app.js"></script> <!-- Se carga el archivo JS -->
-    <script src="../static/js/script.js"></script>
 
 </head>
 
@@ -42,11 +41,14 @@
 
                         <input type="email" name="email" id="email" placeholder="E-mail address" class="input_field">
 
-                        <input type="password" name="password" id="password" placeholder="Password" class="input_field">
-
-                        <div class="Eyes">
-                            <button onclick="mostrar()">👀</button>
-                        </div>
+                        <div class="input-container">
+                            <input type="password" name="password" id="password" placeholder="Password" class="input_field">
+                            
+                            <div class="Eyes">
+                              <button type="button" onclick="mostrar()">👀</button>
+                            </div>
+                          </div>
+                          
 
                         <p class="forgot_password"><a href="/recuperar_contrasena">I forgot my password</a>
 
