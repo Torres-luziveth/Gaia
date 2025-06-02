@@ -1,43 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png"  href="../static/img/icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Retos</title>
-    <link rel="stylesheet" href="../static/css/retos.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../static/css/retos.css" />
+    <style>
+        /* Modal básico y profesional */
+        .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+        background-color: #fff;
+        margin: 10% auto;
+        padding: 20px;
+        border-radius: 12px;
+        width: 80%;
+        max-width: 400px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        text-align: center;
+        }
+
+        .modal-content input {
+        width: 90%;
+        padding: 10px;
+        margin-top: 10px;
+        font-size: 16px;
+        }
+
+        .modal-content button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        }
+
+        .modal-content button:hover {
+        background-color: #45a049;
+        }
+
+        .close {
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #aaa;
+        }
+
+        .close:hover {
+        color: black;
+        }
+    </style>
+    </head>
+    <body>
     <div class="container">
         <div class="container_Main">
-            <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user"></a>
-            <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house"></a>
-            <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes"></a>
-            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"> </a>
-            <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher"></a>
-            <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings"></a>
+        <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user" /></a>
+        <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house" /></a>
+        <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes" /></a>
+        <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos" /></a>
+        <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher" /></a>
+        <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings" /></a>
         </div>
+
         <div class="container_Retos">
-            <div class="column">
-                <div class="box">Shower in less than 5 minutes. 🚿</div>
-                <div class="box">Don’t use paper napkins or towels. 🏡</div>
-                <div class="box">Turn off the tap while brushing your teeth. 🚰</div>
-                <div class="box">Sort your waste properly every day. 🔄</div>
-            </div>
-            <div class="column">
-                <div class="box">Use only natural light during the day. ☀️</div>
-                <div class="box">Walk instead of driving for short trips. 🚶</div>
-                <div class="box">Unplug everything before leaving home. 🔌</div>
-                <div class="box">Don’t accept plastic bags when shopping. 🛍️</div>
-            </div>
-
+        <div class="column" id="column1">
+            <div class="box">Shower in less than 5 minutes. 🚿</div>
+            <div class="box">Don’t use paper napkins or towels. 🏡</div>
+            <div class="box">Turn off the tap while brushing your teeth. 🚰</div>
+            <div class="box">Sort your waste properly every day. 🔄</div>
+        </div>
+        <div class="column">
+            <div class="box">Use only natural light during the day. ☀️</div>
+            <div class="box">Walk instead of driving for short trips. 🚶</div>
+            <div class="box">Unplug everything before leaving home. 🔌</div>
+            <div class="box">Don’t accept plastic bags when shopping. 🛍️</div>
+        </div>
         </div>
 
-        <hr>
+        <hr />
 
-        <button class="add-container" onclick="addDare()">  
-            <img src="../static/img/add.svg" alt="add">
-            New dare</button>
+        <button class="add-container" onclick="openModal()">
+        <img src="../static/img/add.svg" alt="add" />
+        New dare
+        </button>
 
-        <script src="../js/script.js"></script> <!-- Se carga el archivo JS -->
+        <!-- Modal -->
+        <div id="dareModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Add a new dare</h3>
+            <input type="text" id="dareInput" placeholder="Write your dare here..." />
+            <br />
+            <button onclick="addDare()">Add Dare</button>
+        </div>
+        </div>
+
+        <script>
+        function openModal() {
+            document.getElementById("dareModal").style.display = "block";
+            document.getElementById("dareInput").value = "";
+        }
+
+        function closeModal() {
+            document.getElementById("dareModal").style.display = "none";
+        }
+
+        function addDare() {
+            const input = document.getElementById("dareInput").value.trim();
+            if (input !== "") {
+            const column = document.getElementById("column1");
+            const newBox = document.createElement("div");
+            newBox.classList.add("box");
+            newBox.textContent = `¡${input}! 🎯`;
+            column.appendChild(newBox);
+            closeModal();
+            } else {
+            alert("Please enter a dare.");
+            }
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById("dareModal");
+            if (event.target == modal) {
+            closeModal();
+            }
+        };
+        </script>
+    </div>
 </body>
 </html>

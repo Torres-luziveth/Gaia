@@ -8,18 +8,19 @@
 
 .container {
     width: 100vw;
-    height: 114vh;
+    height: 100vh;
     background-image: url(../img/fondo1.png);
     background-repeat: no-repeat;
-    background-position: center 44vh;
+    background-position: center 47vh;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 130px;
 }
 
 .container_signUp {
-    width: 30vw;
+    width: 40vw;
     max-width: 450px;
     min-width: 320px;
     height: auto;

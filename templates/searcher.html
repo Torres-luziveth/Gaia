@@ -1,53 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png"  href="../static/img/icon.png"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Searcher</title>
-    <link rel="stylesheet" href="../static/css/searcher.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="../static/css/searcher.css" />
+    <style>
+        
+    </style>
+    </head>
+    <body>
     <div class="container">
         <div class="container_Main">
-            <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user"></a>
-            <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house"></a>
-            <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes"></a>
-            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"> </a>
-            <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher"></a>
-            <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings"></a>
+        <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user" /></a>
+        <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house" /></a>
+        <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes" /></a>
+        <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos" /></a>
+        <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher" /></a>
+        <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings" /></a>
         </div>
 
         <div class="encyclopedia-container">
-            <h1>Enciclopedia</h1>
-            <div class="book-list">
-                <a href="topic.html?theme=1" class="book">
-                    <div class="book-cover">
-                        <span class="book-title">Como cuidar el agua?</span>
-                    </div>
-                </a>
-                <a href="libro.html?theme=2" class="book">
-                    <div class="book-cover">
-                        <span class="book-title">Como cuidar la luz?</span>
-                    </div>
-                </a>
-                <a href="libro.html?theme=3" class="book">
-                    <div class="book-cover">
-                        <span class="book-title">Como cuidar el aire?</span>
-                    </div>
-                </a>
-                <a href="libro.html?theme=4" class="book">
-                    <div class="book-cover">
-                        <span class="book-title">Como cuidar la tierra?</span>
-                    </div>
-                </a>
-                <a href="libro.html?theme=5" class="book">
-                    <div class="book-cover">
-                        <span class="book-title">Aprende más... </span>
-                    </div>
-                </a>
-            </div>
+        <h1>Enciclopedia</h1>
+        <div class="book-list">
+            <a href="#" class="book" onclick="openBook(1)">
+            <div class="book-cover"><span class="book-title">¿Cómo cuidar el agua?</span></div>
+            </a>
+            <a href="#" class="book" onclick="openBook(2)">
+            <div class="book-cover"><span class="book-title">¿Cómo cuidar la luz?</span></div>
+            </a>
+            <a href="#" class="book" onclick="openBook(3)">
+            <div class="book-cover"><span class="book-title">¿Cómo cuidar el aire?</span></div>
+            </a>
+            <a href="#" class="book" onclick="openBook(4)">
+            <div class="book-cover"><span class="book-title">¿Cómo cuidar la tierra?</span></div>
+            </a>
+            <a href="#" class="book" onclick="openBook(5)">
+            <div class="book-cover"><span class="book-title">Aprende más...</span></div>
+            </a>
+        </div>
         </div>
     </div>
+
+    <!-- Modal tipo libro -->
+    <div id="bookModal" class="book-modal" onclick="closeBook(event)">
+        <div class="book-content" onclick="event.stopPropagation()">
+        <div class="pages-container">
+            <div class="book-page left" id="leftPageText"></div>
+            <div class="book-page right" id="rightPageText"></div>
+        </div>
+        <div class="controls">
+            <button id="prevBtn" onclick="changePage(-1)">Anterior</button>
+            <button id="nextBtn" onclick="changePage(1)">Siguiente</button>
+        </div>
+        </div>
+        <span class="close-btn" onclick="closeBook()">&times;</span>
+    </div>
+
+    <script>
+        const bookContents = {
+        1: [
+            `<strong>¿Por qué cuidar el agua? </strong><br><br>
+            El agua es vital para la vida en el planeta. Sin ella no hay agricultura, higiene ni salud. Cada gota cuenta.`,
+            `<strong>Importancia del agua </strong><br><br>
+            El agua es un recurso limitado, y muchas regiones sufren escasez. Debemos aprender a usarla con responsabilidad.`,
+            `<strong>Acciones para cuidar el agua </strong><br><br>
+            - Cierra la llave mientras te cepillas.<br>
+            - Repara fugas.<br>
+            - Usa regaderas ahorradoras.<br>
+            - Reutiliza agua siempre que puedas.`,
+            `<strong>Mensaje final </strong><br><br>
+            Cuidar el agua es cuidar la vida y el futuro. ¡Empieza hoy y cada día cuenta!`
+        ],
+        2: [
+            `<strong>¿Por qué ahorrar electricidad? </strong><br><br>
+            La electricidad a menudo se produce con combustibles fósiles, que contaminan el aire y afectan la salud.`,
+            `<strong>Beneficios de ahorrar luz </strong><br><br>
+            Ahorrar electricidad reduce tu factura y ayuda a combatir el cambio climático.`,
+            `<strong>Tips para ahorrar electricidad </strong><br><br>
+            - Usa focos LED.<br>
+            - Apaga luces innecesarias.<br>
+            - Desconecta cargadores.<br>
+            - Aprovecha la luz natural.`,
+            `<strong>Reflexión final </strong><br><br>
+            La energía que no consumes es la mejor energía. ¡Apaga y ahorra siempre que puedas!`
+        ],
+        3: [
+            `<strong>¿Por qué cuidar el aire? </strong><br><br>
+            El aire limpio es esencial para la salud y el equilibrio ambiental.`,
+            `<strong>Consecuencias de la contaminación </strong><br><br>
+            La contaminación afecta pulmones, clima y ecosistemas. Es una amenaza global.`,
+            `<strong>¿Qué podemos hacer? </strong><br><br>
+            - Usa transporte público o bicicleta.<br>
+            - Planta árboles.<br>
+            - Evita quemas.<br>
+            - Reduce uso de químicos contaminantes.`,
+            `<strong>Conclusión </strong><br><br>
+            Respira salud, cuida el aire y protege tu entorno para un futuro mejor.`
+        ],
+        4: [
+            `<strong>¿Por qué cuidar la tierra? </strong><br><br>
+            La tierra provee alimentos, recursos y hogar para muchas especies.`,
+            `<strong>Problemas ambientales </strong><br><br>
+            La contaminación y la basura amenazan la fertilidad y la biodiversidad.`,
+            `<strong>Acciones para proteger la tierra </strong><br><br>
+            - Recicla y reutiliza.<br>
+            - No tires basura en la calle.<br>
+            - Apoya agricultura sostenible.<br>
+            - Participa en limpiezas.`,
+            `<strong>Mensaje final </strong><br><br>
+            Tierra sana, vida sana. Cuidemos nuestro hogar común.`
+        ],
+        5: [
+            `<strong>Aprende más sobre sostenibilidad </strong><br><br>
+            La sostenibilidad es vivir en armonía con la naturaleza para preservar recursos.`,
+            `<strong>Principios clave </strong><br><br>
+            - Reducir consumo.<br>
+            - Reutilizar materiales.<br>
+            - Reciclar.<br>
+            - Educar y actuar con responsabilidad.`,
+            `<strong>Cómo contribuir </strong><br><br>
+            - Consume local.<br>
+            - Reduce desperdicios.<br>
+            - Participa en tu comunidad.<br>
+            - Promueve buenas prácticas.`,
+            `<strong>Reflexión final </strong><br><br>
+            Cada acción cuenta para un planeta más saludable y justo. ¡Sé parte del cambio!`
+        ]
+        };
+
+        let currentTheme = null;
+        let currentPageIndex = 0;
+
+        const leftPage = document.getElementById("leftPageText");
+        const rightPage = document.getElementById("rightPageText");
+        const modal = document.getElementById("bookModal");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+
+        function openBook(theme) {
+        currentTheme = theme;
+        currentPageIndex = 0;
+        updatePages();
+        modal.style.display = "flex";
+        }
+
+        function updatePages() {
+        if (!bookContents[currentTheme]) return;
+
+        const pages = bookContents[currentTheme];
+        const leftContent = pages[currentPageIndex] || "";
+        const rightContent = pages[currentPageIndex + 1] || "";
+
+        leftPage.innerHTML = leftContent;
+        rightPage.innerHTML = rightContent;
+
+        prevBtn.disabled = currentPageIndex === 0;
+        nextBtn.disabled = currentPageIndex + 2 >= pages.length;
+        }
+
+        function changePage(offset) {
+        const pages = bookContents[currentTheme];
+        let newIndex = currentPageIndex + 2 * offset;
+
+        if (newIndex < 0) newIndex = 0;
+        if (newIndex > pages.length - 2) newIndex = pages.length - 2;
+
+        currentPageIndex = newIndex;
+        updatePages();
+        }
+
+        function closeBook(e) {
+        if (e && e.target !== modal) return;
+        modal.style.display = "none";
+        currentTheme = null;
+        currentPageIndex = 0;
+        }
+    </script>
 </body>
 </html>

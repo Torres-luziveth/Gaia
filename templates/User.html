@@ -1,34 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png"  href="../static/img/icon.png"/>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png"  href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>User</title>
-    <link rel="stylesheet" href="../static/css/user.css">
+    <link rel="stylesheet" href="../static/css/user.css" />
+    <style>
+        /* Estilos para la foto de perfil */
+        .profile-picture {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #f4b74a;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+        }
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* User info */
+        .user-info h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 700;
+            font-size: 26px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .edit-link {
+            display: inline-block;
+            font-size: 14px;
+            color: #f4b74a;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: color 0.3s ease;
+        }
+        .edit-link:hover {
+            color: #d39527;
+        }
+
+        .profile-actions .action-link {
+            font-size: 14px;
+            color: #777;
+            text-decoration: underline;
+            cursor: pointer;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .profile-actions .action-link:hover {
+            color: #444;
+        }
+
+        .user-details {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            color: #555;
+        }
+        .detail-item {
+            margin-bottom: 10px;
+            display: flex;
+            gap: 8px;
+        }
+        .label {
+            font-weight: 600;
+            color: #222;
+            min-width: 140px;
+        }
+
+        /* Modal */
+        #modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-color: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+        }
+        #modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            width: 320px;
+            max-width: 90%;
+            text-align: center;
+        }
+        .modal-content h3 {
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .modal-content input[type="text"] {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: 2px solid #f4b74a;
+            border-radius: 25px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .modal-content input[type="text"]:focus {
+            border-color: #d39527;
+        }
+        .modal-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .modal-buttons button {
+            flex: 1;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .btn-save {
+            background-color: #f4b74a;
+            color: white;
+        }
+        .btn-save:hover {
+            background-color: #d39527;
+        }
+        .btn-cancel {
+            background-color: #ddd;
+            color: #555;
+        }
+        .btn-cancel:hover {
+            background-color: #bbb;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="container_Main">
-            <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user"></a>
-            <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house"></a>
-            <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes"></a>
-            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"> </a>
-            <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher"></a>
-            <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings"></a>
+            <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user" /></a>
+            <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house" /></a>
+            <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes" /></a>
+            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos" /></a>
+            <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher" /></a>
+            <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings" /></a>
         </div>
 
-        <div class="user-container">
-            <div class="profile-picture" data-initials="NU"></div>
+        <div class="user-container" style="padding: 25px; max-width: 480px; margin: 20px auto; background: #fafafa; border-radius: 15px; box-shadow: 0 8px 20px rgba(0,0,0,0.05);">
+            <div class="profile-picture">
+                <img src="../static/img/user.png" alt="Foto de perfil" id="profileImg" />
+            </div>
             <div class="user-info">
-                <h2>Nombre de Usuario</h2>
-                <a href="#" class="edit-link">Editar nombre</a>
+                <h2 id="username">LuzIveth02</h2>
+                <a href="#" class="edit-link" id="editNameBtn">Editar nombre</a>
                 <div class="profile-actions">
-                    <a href="#" class="action-link">Cambiar de imagen</a>
+                    <a href="#" class="action-link" id="changeImgBtn">Cambiar de imagen</a>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;" />
                 </div>
                 <div class="user-details">
                     <div class="detail-item">
                         <span class="label">ID:</span>
-                        <span class="value">11651803</span>
+                        <span class="value">3</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">Etiqueta:</span>
@@ -36,7 +181,7 @@
                     </div>
                     <div class="detail-item">
                         <span class="label">Fecha de nacimiento:</span>
-                        <span class="value">18/03/1982</span>
+                        <span class="value">27/02/2006</span>
                     </div>
                     <div class="detail-item">
                         <span class="label">País:</span>
@@ -50,5 +195,81 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal editar nombre -->
+    <div id="modal" >
+        <div class="modal-content">
+            <h3>Editar Nombre</h3>
+            <input type="text" id="nameInput" placeholder="Nuevo nombre..." />
+            <div class="modal-buttons">
+                <button class="btn-save" id="saveNameBtn">Guardar</button>
+                <button class="btn-cancel" id="cancelBtn">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const editBtn = document.getElementById('editNameBtn');
+        const modal = document.getElementById('modal');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const saveBtn = document.getElementById('saveNameBtn');
+        const username = document.getElementById('username');
+        const nameInput = document.getElementById('nameInput');
+
+        // Abrir modal de nombre
+        editBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            nameInput.value = username.textContent.trim();
+            modal.classList.add('active');
+            nameInput.focus();
+        });
+
+        // Cancelar modal
+        cancelBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+        });
+
+        // Guardar nombre temporal
+        saveBtn.addEventListener('click', () => {
+            const newName = nameInput.value.trim();
+            if(newName.length > 0){
+                username.textContent = newName;
+            }
+            modal.classList.remove('active');
+        });
+
+        // Cerrar modal con clic fuera o tecla Escape
+        window.addEventListener('click', (e) => {
+            if(e.target === modal){
+                modal.classList.remove('active');
+            }
+        });
+        window.addEventListener('keydown', (e) => {
+            if(e.key === "Escape" && modal.classList.contains('active')){
+                modal.classList.remove('active');
+            }
+        });
+
+        // Cambiar imagen de perfil
+        const changeImgBtn = document.getElementById('changeImgBtn');
+        const fileInput = document.getElementById('fileInput');
+        const profileImg = document.getElementById('profileImg');
+
+        changeImgBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', () => {
+            const file = fileInput.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    profileImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>

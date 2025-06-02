@@ -1,260 +1,147 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Kanit', sans-serif;
-    font-weight: 300;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Kanit', sans-serif;
+            font-weight: 300;
+        }
 
-}
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
 
-.container {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 20px;
-    gap: 15px;
+        .container_Main {
+            width: 80vw;
+            height: 8vh;
+            background: #D6D6D6B2;
+            border-radius: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            gap: 60px;
+            padding: 10px;
+            margin: 10px;
+        }
 
-}
+        .container_Main img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
 
-.container_Main {
-    width: 80vw;
-    height: 8vh;
-    background: #D6D6D6B2;
-    border-radius: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: 60px;
-    padding: 10px;
-    margin: 10px;
+        .container_Main img:hover {
+            width: 50px;
+            height: 40px;
+            background-color: #f4b74a;
+            padding: 3px;
+            border-radius: 30%;
+        }
 
-}
+        .containerOne {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container_Main img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-}
+        .container_Planet_Text {
+            display: flex;
+            flex-direction: row;
+            gap: 50px;
+            align-self: center;
+        }
 
-.container_Main img:hover {
-    width: 50px;
-    height: 40px;
-    background-color: #f4b74a;
-    padding: 3px;
-    border-radius: 30%;
-}
-.containerOne{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .container_Text {
+            display: flex;
+            align-self: flex-start;
+            flex-direction: column;
+            padding-left: 10px;
+        }
 
-.container_Planet_Text {
-    display: flex;
-    flex-direction: row;
-    gap: 150px;
-    align-self: center;
-}
+        p {
+            font-size: 90px;
+            padding-left: 10px;
+            line-height: 1.2;
+        }
 
-.container_Text {
-    display: flex;
-    align-self: flex-start;
-    flex-direction: column;
-}
+        p2 {
+            font-size: 20px;
+            padding-left: 20px;
+        }
 
-p {
-    font-size: 90px;
-    padding-left: 10px;
-    line-height: 1.2;
-}
+        .card {
+            width: 610px;
+            height: 260px;
+            border-radius: 50px;
+            background: #D6D6D614;
+            box-shadow: 0px 7px 8px 0px #bebebe,
+                        -20px -20px 60px #ffffff;
+            display: flex;
+            align-items: center;
+        }
 
-p2 {
-    font-size: 20px;
-}
+        .evolution {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative; /* Para posicionamiento absoluto de .One */
+            width: 400px; /* Ajustado para alinear con la barra */
+            height: 150px; /* Aproximación de la altura de la barra curva */
+            margin-left: 30px;
+            margin-bottom: 31px;
+        }
 
-.card {
-    width: 650px;
-    height: 260px;
-    border-radius: 50px;
-    background: #D6D6D614;
-    box-shadow: 0px 7px 8px 0px  #bebebe,
-        -20px -20px 60px #ffffff;
-    display: flex;
-    align-items: center;
-}
+        .habitantes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 12px;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
 
-.evolution{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
+        .One {
+            font-size: 40px; /* Tamaño de texto ajustado */
+            margin-top: 35px; /* Eliminamos márgenes predeterminados */
+            width: 100%; /* Ocupa el ancho del contenedor */
+            text-align: center; /* Centra el texto horizontalmente */
+            position: absolute; /* Posicionamiento absoluto */
+            top: 50%; /* Centro vertical de la barra */
+            left: 50%; /* Centro horizontal */
+            transform: translate(-50%, -50%); /* Corrige el desplazamiento al centro */
+            color: #000; /* Asegura que el texto sea visible (ajusta si es necesario) */
+        }
+        .population {
+            font-size: 20px;
+            text-align: center;
+            color: #939393;
+        }
 
-.habitantes{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
+        .Two {
+            width: 40%;
+        }
 
-.One {
-    width: 70%;
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
 
-}
+        #planet-container {
+            width: 650px;
+            height: 650px;
+            background: none;
+        }
 
-.Two {
-    width: 40%;
-
-}
-
-.container_Img_Planet {
-    display: flex;
-    flex-direction: column;
-    cursor: grab;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(0deg) rotateY(0deg);
-    transition: transform 0.1s linear;
-}
-
-
-/* From Uiverse.io by Lakshay-art */
-.section-banner {
-    height: 550px;
-    width: 550px;
-    position: relative;
-    transition: left 0.3s linear;
-    background: url("../img/Planeta\ gira.png");
-    background-size: cover;
-    background-position: left;
-    bottom: 0px;
-    border-radius: 50%;
-    /*animation: earthRotate 30s linear 0s infinite;*/
-    box-shadow: 0px 0 20px RGBA(255, 255, 255, 0.2), -5px 0px 8px #c3f4ff inset,
-        15px 2px 25px #000 inset, -24px -2px 34px #c3f4ff99 inset,
-        250px 0px 44px #00000066 inset, 150px 0px 38px #000000aa inset;
-}
-
-@keyframes earthRotate {
-    0% {
-        background-position: 0 0;
-    }
-
-    100% {
-        background-position: 400px 0;
-    }
-}
-
-.curved-corner-star {
-    display: flex;
-    position: relative;
-}
-
-#curved-corner-bottomleft,
-#curved-corner-bottomright,
-#curved-corner-topleft,
-#curved-corner-topright {
-    width: 4px;
-    height: 5px;
-    overflow: hidden;
-    position: relative;
-}
-
-#curved-corner-bottomleft:before,
-#curved-corner-bottomright:before,
-#curved-corner-topleft:before,
-#curved-corner-topright:before {
-    content: "";
-    display: block;
-    width: 200%;
-    height: 200%;
-    position: absolute;
-    border-radius: 50%;
-}
-
-#curved-corner-bottomleft:before {
-    bottom: 0;
-    left: 0;
-    box-shadow: -5px 5px 0 0 white;
-}
-
-#curved-corner-bottomright:before {
-    bottom: 0;
-    right: 0;
-    box-shadow: 5px 5px 0 0 white;
-}
-
-#curved-corner-topleft:before {
-    top: 0;
-    left: 0;
-    box-shadow: -5px -5px 0 0 white;
-}
-
-#curved-corner-topright:before {
-    top: 0;
-    right: 0;
-    box-shadow: 5px -5px 0 0 white;
-}
-
-@keyframes twinkling {
-
-    0%,
-    100% {
-        opacity: 0.1;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-#star-1 {
-    position: absolute;
-    left: -20px;
-    animation: twinkling 3s infinite;
-}
-
-#star-2 {
-    position: absolute;
-    left: -40px;
-    top: 30px;
-    animation: twinkling 2s infinite;
-}
-
-#star-3 {
-    position: absolute;
-    left: 350px;
-    top: 90px;
-    animation: twinkling 4s infinite;
-}
-
-#star-4 {
-    position: absolute;
-    left: 200px;
-    top: 290px;
-    animation: twinkling 3s infinite;
-}
-
-#star-5 {
-    position: absolute;
-    left: 50px;
-    top: 270px;
-    animation: twinkling 1.5s infinite;
-}
-
-#star-6 {
-    position: absolute;
-    left: 250px;
-    top: -50px;
-    animation: twinkling 4s infinite;
-}
-
-#star-7 {
-    position: absolute;
-    left: 290px;
-    top: 60px;
-    animation: twinkling 2s infinite;
-}
+        .progress-bar {
+            width: 250px; /* Tamaño fijo para la barra */
+            height: auto; /* Mantiene la proporción */
+            margin-bottom: 10px; /* Sin margen inferior, manejado por .One */
+            align-self: center; /* Centra la imagen */
+        }

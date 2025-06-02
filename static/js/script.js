@@ -75,8 +75,76 @@ monthSelector.addEventListener('change', () => {
     generateCalendar(selectedMonth, 2025);
 });
 
-function mostrar() {
-    
-    const input = document.getElementById("password");
-    input.type = input.type === "password" ? "text" : "password";
-}
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const loginBtn = document.getElementById("loginBtn");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+
+    function validateForm() {
+        let isValid = true;
+
+        if (emailInput.value.trim() === "") {
+            emailInput.classList.add("error");
+            isValid = false;
+        } else {
+            emailInput.classList.remove("error");
+        }
+
+        if (passwordInput.value.trim() === "") {
+            passwordInput.classList.add("error");
+            isValid = false;
+        } else {
+            passwordInput.classList.remove("error");
+        }
+
+        return isValid;
+    }
+
+    emailInput.addEventListener("input", function () {
+        emailInput.classList.remove("error");
+    });
+
+    passwordInput.addEventListener("input", function () {
+        passwordInput.classList.remove("error");
+    });
+
+    loginBtn.addEventListener("click", function () {
+        if (validateForm()) {
+            window.location.href = "main.html";
+        }
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.getElementById("slider");
+
+    slider.addEventListener("click", function () {
+        this.classList.add("active");
+        setTimeout(() => {
+        }, 300); 
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".container_Main img").forEach(boton => {
+        boton.addEventListener("click", function () {
+            const destino = this.getAttribute("data-url"); 
+            if (destino) {
+                window.location.href = destino;
+            }
+        });
+    });
+});
+
+
+
+
+

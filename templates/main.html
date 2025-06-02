@@ -1,134 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/png"  href="../static/img/icon.png"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/main.css">
 </head>
-
 <body>
-    <div class="container">
     <div class="container">
         <div class="container_Main">
             <a href="/templates/User.html"><img src="../static/img/user.svg" alt="user"></a>
             <a href="/templates/main.html"><img src="../static/img/house.svg" alt="house"></a>
             <a href="/templates/notas.html"><img src="../static/img/notes.svg" alt="notes"></a>
-            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"> </a>
+            <a href="/templates/retos.html"><img src="../static/img/challenges.svg" alt="retos"></a>
             <a href="/templates/searcher.html"><img src="../static/img/searcher.svg" alt="searcher"></a>
             <a href="/templates/setting.html"><img src="../static/img/settings.svg" alt="settings"></a>
         </div>
-
         <div class="container_Planet_Text">
             <div class="containerOne">
                 <div class="card">
                     <div class="evolution">
-                        <img src="../static/img/porcentaje.png" alt="porcentaje" class="One">
+                        <img src="../static/img/0porciento.png" alt="progress-bar" class="progress-bar">
+                        <div class="One">0%</div> <!-- Texto en lugar de imagen -->
                         <h2>Your evolution</h2>
                     </div>
-
                     <div class="habitantes">
                         <img src="../static/img/habitantes.png" alt="habitantes" class="Two">
-                        <h2>Your inhabitants</h2>
+                        <div>
+                            <h2>Your inhabitants</h2>
+                            <h3 class="population">0</h3>
+                        </div>
                     </div>
-
-
                 </div>
                 <div class="container_Text">
                     <p>Working for <br> a better <br> world</p>
                     <p2>Every little grain of sand counts.</p2>
                 </div>
             </div>
-            <div class="container_Img_Planet">
-                <!-- From Uiverse.io by Lakshay-art -->
-                <div class="section-banner">
-                    <div id="star-1">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-2">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-3">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-4">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-5">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-6">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-
-                    <div id="star-7">
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-bottomright"></div>
-                            <div id="curved-corner-bottomleft"></div>
-                        </div>
-                        <div class="curved-corner-star">
-                            <div id="curved-corner-topright"></div>
-                            <div id="curved-corner-topleft"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <img src="../static/img/sombra.png" alt="sombra">
-
-            </div>
+            <div id="planet-container"></div>
         </div>
     </div>
 
-    <script src="../js/script.js"></script>
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/fflate@0.8.2/umd/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/FBXLoader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configuración de la escena
+            const scene = new THREE.Scene();
+            scene.background = null;
+            const container = document.getElementById('planet-container');
+            if (!container) {
+                console.error('No se encontró el elemento #planet-container');
+                return;
+            }
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
 
+            // Iluminación
+            const ambientLight = new THREE.AmbientLight(0xffffff, 5.0);
+            scene.add(ambientLight);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+            directionalLight.position.set(5, 5, 5);
+            scene.add(directionalLight);
+
+            // Variable para el porcentaje (cámbiala manualmente aquí)
+            let currentPercentage = 50; // Valor inicial según tu código
+            const percentageElement = document.querySelector('.One');
+            const progressBarElement = document.querySelector('.progress-bar');
+            const populationElement = document.querySelector('.population');
+            const maxPopulation = 8000000; // Población máxima a 100%
+            if (percentageElement) {
+                percentageElement.textContent = `${currentPercentage}%`;
+            }
+            if (progressBarElement) {
+                updateProgressBar(currentPercentage);
+            }
+            if (populationElement) {
+                updatePopulation(currentPercentage);
+            }
+
+            // Variable para el planeta
+            let planet;
+
+            // Función para cargar un modelo FBX según el porcentaje
+            function loadPlanetModel(percentage) {
+                // Remover el modelo anterior si existe
+                if (scene.getObjectByName('planet')) {
+                    scene.remove(scene.getObjectByName('planet'));
+                }
+
+                let modelPath = '';
+                if (percentage < 25) {
+                    modelPath = '../static/Arch_fbx/Planeta_4.fbx'; // 0-25%
+                } else if (percentage < 50) {
+                    modelPath = '../static/Arch_fbx/Planeta_3.fbx'; // 25-50%
+                } else if (percentage < 75) {
+                    modelPath = '../static/Arch_fbx/Planeta_2.fbx'; // 50-75%
+                } else {
+                    modelPath = '../static/Arch_fbx/Planeta_1.fbx'; // 75-100%
+                }
+
+                const loader = new THREE.FBXLoader();
+                loader.load(
+                    modelPath,
+                    (fbx) => {
+                        planet = fbx;
+                        planet.name = 'planet';
+
+                        const embeddedTextures = {};
+                        if (fbx.textures) {
+                            for (const textureName in fbx.textures) {
+                                embeddedTextures[textureName] = fbx.textures[textureName];
+                                console.log('Textura incrustada encontrada:', textureName);
+                            }
+                        } else {
+                            console.warn('No se encontraron texturas incrustadas en el FBX');
+                        }
+
+                        planet.traverse((child) => {
+                            if (child.isMesh) {
+                                const newMaterial = new THREE.MeshStandardMaterial({
+                                    color: 0x808080,
+                                    roughness: 0.5,
+                                    metalness: 0.0,
+                                    side: THREE.DoubleSide
+                                });
+
+                                const originalMaterial = child.material;
+                                if (originalMaterial && originalMaterial.map && originalMaterial.map.isTexture) {
+                                    newMaterial.map = originalMaterial.map;
+                                } else if (embeddedTextures[child.name] || embeddedTextures[originalMaterial?.name]) {
+                                    newMaterial.map = embeddedTextures[child.name] || embeddedTextures[originalMaterial?.name];
+                                }
+
+                                if (originalMaterial?.normalMap && originalMaterial.normalMap.isTexture) {
+                                    newMaterial.normalMap = originalMaterial.normalMap;
+                                }
+                                if (originalMaterial?.roughnessMap && originalMaterial.roughnessMap.isTexture) {
+                                    newMaterial.roughnessMap = originalMaterial.roughnessMap;
+                                }
+
+                                child.material = newMaterial;
+                                child.material.needsUpdate = true;
+                            }
+                        });
+
+                        scene.add(planet);
+                        planet.scale.set(0.1, 0.1, 0.1); // Según tu valor
+                        planet.position.set(0, 0, 0);
+                        console.log('Modelo FBX cargado exitosamente:', modelPath);
+                    },
+                    (xhr) => {
+                        console.log((xhr.loaded / xhr.total * 100) + '% cargado');
+                    },
+                    (error) => {
+                        console.error('Error al cargar el modelo FBX:', error);
+                    }
+                );
+            }
+
+            // Cargar el modelo inicial
+            loadPlanetModel(currentPercentage);
+
+            // Posicionar la cámara
+            camera.position.z = 9.3; // Según tu valor
+
+            // Variables para la rotación
+            let isDragging = false;
+            let previousMousePosition = { x: 0, y: 0 };
+            const autoRotateSpeed = 0.005; // Velocidad de rotación automática
+
+            // Eventos de ratón
+            container.addEventListener('mousedown', (event) => {
+                isDragging = true;
+                previousMousePosition = { x: event.clientX, y: event.clientY };
+            });
+
+            container.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            container.addEventListener('mousemove', (event) => {
+                if (isDragging && planet) {
+                    const deltaMove = {
+                        x: event.clientX - previousMousePosition.x,
+                        y: event.clientY - previousMousePosition.y
+                    };
+                    planet.rotation.y += deltaMove.x * 0.005;
+                    planet.rotation.x += deltaMove.y * 0.005;
+                    planet.rotation.x = Math.max(Math.min(planet.rotation.x, Math.PI / 2), -Math.PI / 2);
+                    previousMousePosition = { x: event.clientX, y: event.clientY };
+                }
+            });
+
+            // Ajustar el tamaño del render al cambiar la ventana
+            window.addEventListener('resize', () => {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                renderer.setSize(width, height);
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+            });
+
+            // Animación
+            function animate() {
+                requestAnimationFrame(animate);
+                if (planet && !isDragging) {
+                    planet.rotation.y += autoRotateSpeed; // Rotación automática en el eje Y
+                }
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // Función para actualizar el porcentaje manualmente
+            function updatePercentage(newPercentage) {
+                currentPercentage = Math.min(Math.max(newPercentage, 0), 100); // Limitar entre 0 y 100
+                if (percentageElement) {
+                    percentageElement.textContent = `${currentPercentage}%`;
+                }
+                if (progressBarElement) {
+                    updateProgressBar(currentPercentage);
+                }
+                loadPlanetModel(currentPercentage); // Actualizar el modelo según el porcentaje
+            }
+
+            // Función para actualizar la imagen de la barra de progreso
+            function updateProgressBar(percentage) {
+                let imagePath = '';
+                if (percentage < 25) {
+                    imagePath = '../static/img/0porciento.png';
+                } else if (percentage < 50) {
+                    imagePath = '../static/img/25porciento.png';
+                } else if (percentage < 75) {
+                    imagePath = '../static/img/50porciento.png';
+                } else {
+                    imagePath = '../static/img/75porciento.png';
+                }
+                if (percentage === 100) {
+                    imagePath = '../static/img/100porciento.png';
+                }
+                progressBarElement.src = imagePath;
+            }
+
+            // Función para actualizar la población
+            function updatePopulation(percentage) {
+                const population = Math.round((percentage / 100) * maxPopulation);
+                populationElement.textContent = population;
+            }
+
+        });
+    </script>
+</body>
 </html>
